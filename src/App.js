@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TodoList from './components/TodoList'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    tasks: [
+      { name: 'call Vodafone', complete: false, dueDate: '2019-10-18' },
+      { name: 'have a beer', complete: false, dueDate: '2019-10-18' },
+      { name: 'learn python', complete: false, dueDate: '2019-10-18' }
+    ]
+  }
+
+  toggleComplete = (taskName) => {
+    this.setState(currentState => {
+      const newTasks = currentState.tasks.map(task => {
+        if (task.name === taskName) {
+          task.complete = !task.complete;
+        }
+        return task;
+      });
+      return { tasks: newTasks }
+    });
+  }
+
+  render() {
+    return (
+      <>
+      <h1>To Do List</h1>
+      <TodoList tasks={ this.state.tasks } toggleComplete={ this.toggleComplete }/>
+      </>
+    )
+  }
 }
 
 export default App;

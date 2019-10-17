@@ -20,3 +20,13 @@
 .App-link {
   color: #09d3ac;
 }
+
+h1 {
+  text-align: center;
+}
+
+li {
+  width : 50vw;
+  min-width: 150px;
+  text-decoration: none;
+}
